@@ -1,0 +1,36 @@
+// https://www.typescriptlang.org/tsconfig/
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    // Type Checking 
+    "noUncheckedIndexedAccess": true,
+    "strict": true,
+    // Modules
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": ["./worker-configuration.d.ts"],
+    // Emit
+    "noEmit": true,
+    // JavaScript Support
+    // "allowJs": true,
+    // "checkJs": false,
+    // Editor Support
+    // Interop Constraints
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    // Backwards Compatibility
+    // Language and Environment
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "lib": ["esnext"],
+    "target": "esnext",
+    // Compiler Diagnostics
+    // Projects
+    // Output Formatting
+    // Completeness
+    "skipLibCheck": true,
+    // Command Line
+    // Watch Options
+  }
+}

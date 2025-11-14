@@ -1,0 +1,19 @@
+{
+  "name": "wordle-workshop",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build-assets": "esbuild ./src/assets/main.js ./src/assets/main.css --outdir=./public/assets/ --format=esm --bundle --minify --watch",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.4",
+    "wrangler": "^4.47.0"
+  },
+  "dependencies": {
+    "alpinejs": "^3.15.1",
+    "hono": "^4.10.5"
+  }
+}

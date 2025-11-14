@@ -1,0 +1,7 @@
+node_modules/
+public/assets/
+.wrangler/
+.env
+.env.production
+.DS_Store
+.assetsignore
