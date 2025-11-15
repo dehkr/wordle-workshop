@@ -11,8 +11,6 @@ body {
 }
 
 #game {
-/*  display: grid;
-  grid-template-columns: repeat(3, 1fr);*/
   outline: 2px solid #777;
 }
 
@@ -28,4 +26,14 @@ body {
   justify-content: center;
   outline: 1px solid #777;
   font-size: 2rem;
+}
+
+.result {
+  font-size: 1.3rem;
+  text-align: center;
+  display: block;
+  margin-top: 1.5rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
 }

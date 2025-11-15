@@ -13,8 +13,8 @@
     // Emit
     "noEmit": true,
     // JavaScript Support
-    // "allowJs": true,
-    // "checkJs": false,
+    "allowJs": true,
+    "checkJs": false,
     // Editor Support
     // Interop Constraints
     "forceConsistentCasingInFileNames": true,

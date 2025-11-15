@@ -3,8 +3,9 @@ import { Tile } from './Tile';
 export const game = () => ({
   guessesAllowed: 3,
   theWord: 'cat',
-  wordLength: 3,
   currentRowIndex: 0,
+  state: 'active',
+  message: '',
   
   get currentGuess() {
     return this.currentRow.map(tile => tile.letter).join('');
@@ -12,11 +13,13 @@ export const game = () => ({
 
   init() {
     this.board = Array.from({ length: this.guessesAllowed }, () => {
-      return Array.from({ length: this.wordLength }, () => new Tile());
+      return Array.from({ length: this.theWord.length }, () => new Tile());
     });
   },
 
   onKeyPress(key) {
+    this.message = '';
+    
     if (/^[A-z]$/.test(key)) {
       this.fillTile(key);
     } else if (key === 'Enter') {
@@ -35,13 +38,18 @@ export const game = () => ({
 
   submitGuess() {
     let guess = this.currentGuess
-    if (this.currentGuess.length < this.wordLength) {
+
+    if (this.currentGuess.length < this.theWord.length) {
       return;
     }
+
     if (guess === this.theWord) {
-      alert('You win!');
+      this.message = 'You win!';
+    } else if (this.guessesAllowed === this.currentRowIndex + 1) {
+      this.message = 'Game over. You lose.';
+      this.state = 'complete';
     } else {
-      alert('Nope');
+      this.message = 'Nope';
       this.currentRowIndex++;
     }
   },
