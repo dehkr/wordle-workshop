@@ -1,17 +1,17 @@
-let grid = document.querySelector('#game');
+const grid = document.querySelector('#game');
 
-let guessesAllowed = 3;
-let wordLength = 4;
+const guessesAllowed = 3;
+const wordLength = 4;
 
-let fragment = document.createDocumentFragment();
+const fragment = document.createDocumentFragment();
 
 const generateGrid = () => {
   Array.from({ length: guessesAllowed }).forEach(() => {
-    let row = document.createElement('div');
+    const row = document.createElement('div');
     row.classList.add('row');
 
     Array.from({ length: wordLength }).forEach(() => {
-      let tile = document.createElement('div');
+      const tile = document.createElement('div');
       tile.classList.add('tile');
 
       row.appendChild(tile);

@@ -6,9 +6,12 @@
     "build-assets": "esbuild ./src/assets/main.js ./src/assets/main.css --outdir=./public/assets/ --format=esm --bundle --minify --watch",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "check": "biome check && pnpm run check-summary",
+    "check-summary": "biome check --reporter=summary"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.5",
     "esbuild": "0.25.4",
     "wrangler": "^4.47.0"
   },

@@ -1,5 +1,5 @@
 import { html } from 'hono/html';
-import { type HtmlEscapedString } from 'hono/utils/html';
+import type { HtmlEscapedString } from 'hono/utils/html';
 
 export type SiteData = {
   title: string;

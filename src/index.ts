@@ -1,8 +1,7 @@
 import { Hono } from 'hono';
-import { html } from 'hono/html';
-import { base, type SiteData } from './html/base';
-import { home } from './html/home';
+import { base } from './html/base';
 import { notFound, serverError } from './html/errors';
+import { home } from './html/home';
 
 const app = new Hono<{ Bindings: Env }>();
 
