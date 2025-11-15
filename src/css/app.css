@@ -11,7 +11,7 @@ body {
 }
 
 #game {
-  outline: 2px solid #777;
+  border: 1px solid #bbb;
 }
 
 .row {
@@ -24,8 +24,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: 1px solid #777;
+  border: 1px solid #bbb;
   font-size: 2rem;
+}
+
+.absent {
+  background: #444;
+}
+
+.present {
+  background: darkgoldenrod;
+}
+
+.correct {
+  background: seagreen;
 }
 
 .result {

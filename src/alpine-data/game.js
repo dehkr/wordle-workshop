@@ -11,6 +11,10 @@ export const game = () => ({
     return this.currentRow.map(tile => tile.letter).join('');
   },
 
+  get currentRow() {
+    return this.board[this.currentRowIndex];
+  },
+
   init() {
     this.board = Array.from({ length: this.guessesAllowed }, () => {
       return Array.from({ length: this.theWord.length }, () => new Tile());
@@ -37,11 +41,13 @@ export const game = () => ({
   },
 
   submitGuess() {
-    let guess = this.currentGuess
+    const guess = this.currentGuess;
 
-    if (this.currentGuess.length < this.theWord.length) {
+    if (guess.length < this.theWord.length) {
       return;
     }
+
+    this.refreshTileStatusInRow();
 
     if (guess === this.theWord) {
       this.message = 'You win!';
@@ -54,7 +60,14 @@ export const game = () => ({
     }
   },
 
-  get currentRow() {
-    return this.board[this.currentRowIndex];
+  refreshTileStatusInRow() {
+    this.currentRow.forEach((tile, index) => {
+      tile.status = this.theWord.includes(tile.letter) ? 'present' : 'absent';
+
+      if (this.currentGuess[index] === this.theWord[index]) {
+        tile.status = 'correct';
+      }
+    });
   },
+
 });
