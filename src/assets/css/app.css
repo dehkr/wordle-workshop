@@ -24,6 +24,7 @@ body {
   text-align: center;
   margin-bottom: 1.5rem;
   margin-top: 0;
+  position: relative;
   & img {
     display: inline-block;
   }
@@ -37,6 +38,7 @@ body {
   position: relative;
   border-radius: 20px;
   margin: auto;
+  width: 300px;
 }
 
 #game:before {
@@ -76,20 +78,15 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   color: #496e9e;
+  &.correct {
+    color: var(--correct-color);
+    text-shadow: 0 0 12px rgba(38, 246, 110, 0.42);
+  }
+  &.present {
+    color: var(--present-color);
+    text-shadow: 0 0 12px rgba(246, 171, 38, 0.42);
+  }
 }
-
-#keyboard {
-  margin-top: 2rem;
-}
-
-/*.key {
-  background: #c5c5c5;
-  border: 0;
-  margin: 2px;
-  height: 50px;
-  min-width: 40px;
-  border-radius: 4px;
-}*/
 
 .row.invalid .tile,
 .tile.invalid {
@@ -97,40 +94,39 @@ body {
   text-shadow: 0 0 12px rgba(246, 38, 38, 0.42);
 }
 
-.tile.correct {
-  color: var(--correct-color);
-  text-shadow: 0 0 12px rgba(38, 246, 110, 0.42);
+#keyboard {
+  margin-top: 2rem;
 }
 
-/*.key.correct {
-  background: var(--correct-color);
-}*/
-
-.tile.present {
-  color: var(--present-color);
-  text-shadow: 0 0 12px rgba(246, 171, 38, 0.42);
+.key {
+  background: #c5c5c5;
+  border: 0;
+  margin: 2px;
+  height: 50px;
+  min-width: 40px;
+  border-radius: 4px;
+  &.correct {
+    background: var(--correct-color);
+  }
+  &.present {
+    background: var(--present-color);
+  }
+  &.absent {
+    background: var(--absent-color);
+  } 
 }
-
-/*.key.present {
-  background: var(--present-color);
-}*/
-
-/*.key.absent {
-  background: var(--absent-color);
-}*/
 
 header {
   position: relative;
 }
 
 .result {
-  text-align: center;
+  text-align: left;
   display: block;
   font-weight: 500;
   font-size: 20px;
-  margin-top: 1rem;
-  position: fixed;
-  inset: auto 0 3rem 0;
+  position: absolute;
+  inset: 2.5rem 0 auto 70%;
 }
 
 .result:empty {

@@ -8,6 +8,11 @@ export const game = () => ({
   state: 'active',
   errors: false,
   message: '',
+  letters: [
+    'QWERTYUIOP'.split(''),
+    'ASDFGHJKL'.split(''),
+    ['Enter', ...'ZXCVBNM'.split(''), 'Backspace'],
+  ],
 
   get currentRow() {
     return this.board[this.currentRowIndex];
@@ -25,6 +30,14 @@ export const game = () => ({
     this.board = Array.from({ length: this.guessesAllowed }, () => {
       return Array.from({ length: this.theWord.length }, (_, index) => new Tile(index));
     });
+  },
+
+  matchingTileForKey(key) {
+    return this.board
+      .flat()
+      .filter((tile) => tile.status)
+      .sort((_, tile) => tile.status === 'correct' ? 1 : -1)
+      .find((tile) => tile.letter === key.toLowerCase());
   },
 
   onKeyPress(key) {
