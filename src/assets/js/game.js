@@ -1,10 +1,12 @@
 import { Tile } from './Tile';
+import words from './words';
 
 export const game = () => ({
   guessesAllowed: 3,
   theWord: 'cat',
   currentRowIndex: 0,
   state: 'active',
+  errors: false,
   message: '',
 
   get currentRow() {
@@ -27,6 +29,7 @@ export const game = () => ({
 
   onKeyPress(key) {
     this.message = '';
+    this.errors = false;
 
     if (/^[A-z]$/.test(key)) {
       this.fillTile(key);
@@ -57,6 +60,12 @@ export const game = () => ({
 
   submitGuess() {
     if (this.currentGuess.length < this.theWord.length) {
+      return;
+    }
+
+    if (!words.includes(this.currentGuess)) {
+      this.errors = true;
+      this.message = 'Not a word.';
       return;
     }
 
