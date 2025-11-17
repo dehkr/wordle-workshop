@@ -1,4 +1,31 @@
-export default [
+export const theWords = [
+  'aim',
+  'arm',
+  'bad',
+  'bye',
+  'car',
+  'dog',
+  'ear',
+  'far',
+  'gas',
+  'gun',
+  'law',
+  'mug',
+  'odd',
+  'oil',
+  'owl',
+  'pet',
+  'rat',
+  'run',
+  'ski',
+  'tea',
+  'toy',
+  'van',
+  'war',
+  'yes',
+];
+
+export const allWords = [
   'aah',
   'aal',
   'aas',

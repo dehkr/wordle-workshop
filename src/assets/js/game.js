@@ -1,13 +1,14 @@
 import { Tile } from './Tile';
-import words from './words';
+import { allWords, theWords } from './words';
 
 export const game = () => ({
   guessesAllowed: 3,
-  theWord: 'cat',
+  theWord: theWords[Math.floor(Math.random() * theWords.length)],
   currentRowIndex: 0,
   state: 'active',
   errors: false,
   message: '',
+  
   letters: [
     'QWERTYUIOP'.split(''),
     'ASDFGHJKL'.split(''),
@@ -76,7 +77,7 @@ export const game = () => ({
       return;
     }
 
-    if (!words.includes(this.currentGuess)) {
+    if (!allWords.includes(this.currentGuess)) {
       this.errors = true;
       this.message = 'Not a word.';
       return;
@@ -87,16 +88,12 @@ export const game = () => ({
     if (this.currentGuess === this.theWord) {
       this.state = 'complete';
       this.message = 'You win!';
-      return;
-    }
-
-    if (this.remainingGuesses <= 0) {
+    } else if (this.remainingGuesses <= 0) {
       this.state = 'complete';
-      this.message = `Game over. The word was: ${this.theWord}`;
-      return;
+      this.message = `Game over. The word was: ${this.theWord.toUpperCase()}`;
+    } else {
+      this.currentRowIndex++;
+      this.message = 'Incorrect';
     }
-
-    this.currentRowIndex++;
-    this.message = 'Nope';
   },
 });

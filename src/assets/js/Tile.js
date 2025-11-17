@@ -7,37 +7,28 @@ export class Tile {
   }
 
   static updateStatusesForRow(row, theWord) {
-    // initial status update
+    theWord = theWord.split('');
+
+    // check for correct letters
     for (const tile of row) {
-      tile.updateStatus(theWord);
+      if (theWord[tile.position] === tile.letter) {
+        tile.status = 'correct';
+        theWord[tile.position] = null;
+      }
     }
 
-    // identify tiles that need status changed
-    const tilesToDowngrade = row.filter((tile) => {
-      return (
-        tile.status === 'present' &&
-        row.some((t) => t.letter === tile.letter && t.status === 'correct')
-      );
-    });
+    // check for present letters
+    for (const tile of row) {
+      if (theWord.includes(tile.letter)) {
+        tile.status = 'present';
+        theWord[theWord.indexOf(tile.letter)] = null;
+      }
+    }
 
-    // change status
-    for (const tile of tilesToDowngrade) {
+    // anything that remains is absent
+    for (const tile of row.filter((tile) => !tile.status)) {
       tile.status = 'absent';
     }
-  }
-
-  updateStatus(theWord) {
-    if (!theWord.includes(this.letter)) {
-      this.status = 'absent';
-      return;
-    }
-
-    if (this.letter === theWord[this.position]) {
-      this.status = 'correct';
-      return;
-    }
-
-    this.status = 'present';
   }
 
   fill(key) {
