@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs';
-import { game } from './js/game';
+import { game } from './game/game';
 
 Alpine.data('game', game);
 
