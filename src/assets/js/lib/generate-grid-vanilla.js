@@ -5,7 +5,7 @@ const wordLength = 4;
 
 const fragment = document.createDocumentFragment();
 
-const generateGrid = () => {
+function generateGrid() {
   Array.from({ length: guessesAllowed }).forEach(() => {
     const row = document.createElement('div');
     row.classList.add('row');
@@ -20,7 +20,7 @@ const generateGrid = () => {
     fragment.appendChild(row);
   });
 
-  grid.appendChild(fragment);  
+  grid.appendChild(fragment);
 }
 
 // init

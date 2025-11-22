@@ -2,35 +2,36 @@
 {
   "include": ["src/**/*"],
   "compilerOptions": {
-    // Type Checking 
+    // Type Checking ------------------------------------------
     "noUncheckedIndexedAccess": true,
     "strict": true,
-    // Modules
+    // Modules ------------------------------------------------
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "types": ["./worker-configuration.d.ts"],
-    // Emit
+    // Emit ---------------------------------------------------
     "noEmit": true,
-    // JavaScript Support
+    // JavaScript Support -------------------------------------
     "allowJs": true,
     "checkJs": false,
-    // Editor Support
-    // Interop Constraints
+    // Editor Support -----------------------------------------
+    // Interop Constraints ------------------------------------
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    // Backwards Compatibility
-    // Language and Environment
+    "verbatimModuleSyntax": true,
+    // Backwards Compatibility --------------------------------
+    // Language and Environment -------------------------------
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "lib": ["esnext"],
     "target": "esnext",
-    // Compiler Diagnostics
-    // Projects
-    // Output Formatting
-    // Completeness
-    "skipLibCheck": true,
-    // Command Line
-    // Watch Options
+    // Compiler Diagnostics -----------------------------------
+    // Projects -----------------------------------------------
+    // Output Formatting --------------------------------------
+    // Completeness -------------------------------------------
+    "skipLibCheck": true
+    // Command Line -------------------------------------------
+    // Watch Options ------------------------------------------
   }
 }

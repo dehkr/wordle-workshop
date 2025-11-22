@@ -1,7 +1,7 @@
 import { html } from 'hono/html';
 import { BaseLayout } from '../layouts/BaseLayout';
 
-export const NotFoundPage = () => {
+export function NotFoundPage() {
   const pageContent = html`<div>
     <pre>404</pre>
     <p>Nothing here. Go <a href="/">home</a>.</p>
@@ -11,4 +11,4 @@ export const NotFoundPage = () => {
     title: '404 Error: Not found',
     children: pageContent,
   });
-}
+};

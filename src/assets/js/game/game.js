@@ -1,14 +1,14 @@
 import { Tile } from './Tile';
 import { allWords, theWords } from './words';
 
-export const game = () => ({
+export const game = {
   guessesAllowed: 3,
   theWord: theWords[Math.floor(Math.random() * theWords.length)],
   currentRowIndex: 0,
   state: 'active',
   errors: false,
   message: '',
-  
+
   letters: [
     'QWERTYUIOP'.split(''),
     'ASDFGHJKL'.split(''),
@@ -37,7 +37,7 @@ export const game = () => ({
     return this.board
       .flat()
       .filter((tile) => tile.status)
-      .sort((_, tile) => tile.status === 'correct' ? 1 : -1)
+      .sort((_, tile) => (tile.status === 'correct' ? 1 : -1))
       .find((tile) => tile.letter === key.toLowerCase());
   },
 
@@ -96,4 +96,4 @@ export const game = () => ({
       this.message = 'Incorrect';
     }
   },
-});
+}

@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "node ./scripts/build-assets.mjs",
-    "watch": "node ./scripts/build-assets.mjs --watch",
+    "build": "node ./scripts/build-assets.js",
+    "watch": "node ./scripts/build-assets.js --watch",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types",
@@ -15,7 +15,8 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.5",
     "esbuild": "0.25.4",
-    "wrangler": "^4.49.0"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.50.0"
   },
   "dependencies": {
     "alpinejs": "^3.15.2",

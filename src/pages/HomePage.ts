@@ -2,7 +2,7 @@ import { html } from 'hono/html';
 import { BaseLayout } from '../layouts/BaseLayout';
 import { nl } from '../utils/formatting';
 
-export const HomePage = () => {
+export function HomePage() {
   const pageContent = html`<main x-data="game" @keyup.window="onKeyPress($event.key)">
     <h1 class="logo" aria-label="TryCat">
       <img src="images/trycat-logo.svg" alt="TryCat logo">
@@ -18,11 +18,7 @@ export const HomePage = () => {
           }"
         >
           <template x-for="tile in row">
-            <div
-              class="tile"
-              x-bind:class="tile.status"
-              x-text="tile.letter"
-            ></div>
+            <div class="tile" x-bind:class="tile.status" x-text="tile.letter"></div>
           </template>
         </div>
       </template>
@@ -52,4 +48,4 @@ export const HomePage = () => {
     styles: html`<link rel="preconnect" href="https://fonts.googleapis.com">${nl(2)}<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>${nl(2)}<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">${nl(2)}`,
     children: pageContent,
   });
-}
+};

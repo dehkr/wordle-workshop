@@ -1,7 +1,7 @@
 import { html } from 'hono/html';
 import { BaseLayout } from '../layouts/BaseLayout';
 
-export const ErrorPage = (errName: string, errMessage: string) => {
+export function ErrorPage(errName: string, errMessage: string) {
   const pageContent = html`<div>
     <pre>Server Error | 500</pre>
     <h3>${errName}</h3>
@@ -12,4 +12,4 @@ export const ErrorPage = (errName: string, errMessage: string) => {
     title: 'Server Error',
     children: pageContent,
   });
-}
+};

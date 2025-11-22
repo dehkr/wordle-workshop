@@ -9,7 +9,7 @@ const getAssetUrl = (assetName: string) => {
   if (!hashedName) {
     throw new Error(`Asset not found in manifest: ${assetName}`);
   }
-  return `assets/${hashedName}`; 
+  return `assets/${hashedName}`;
 };
 
 type LayoutProps = {
@@ -22,7 +22,7 @@ type LayoutProps = {
 
 export const BaseLayout = ({
   title,
-  description = "A wordle clone.",
+  description = 'A wordle clone.',
   styles,
   scripts,
   children,
