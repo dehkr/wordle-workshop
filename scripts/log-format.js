@@ -7,5 +7,5 @@ export const fmt = {
   bold: '\x1b[1m',
   dim: '\x1b[2m',
 };
-export const check = `${fmt.g}✓${fmt._}`;
+export const check = `${fmt.g}✔${fmt._}`;
 export const cross = `${fmt.r}✘${fmt._}`;

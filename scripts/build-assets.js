@@ -8,8 +8,9 @@ const filesToBuild = [
   './src/assets/css/main.css',
 ];
 const outDirectory = './public/assets';
-const manifestPath = `${outDirectory}/manifest.json`;
+const manifestPath = `${outDirectory}/assets.json`;
 const isWatchMode = process.argv.includes('--watch');
+const isMinify = process.argv.includes('--minify');
 
 async function cleanUp(dirPath) {
   try {
@@ -34,7 +35,7 @@ async function buildAssets() {
     outdir: outDirectory,
     format: 'esm',
     bundle: true,
-    minify: true,
+    minify: isMinify,
     metafile: true,
     plugins: [manifestPlugin(manifestPath)],
   });

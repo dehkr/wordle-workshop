@@ -1,13 +1,13 @@
 import { html } from 'hono/html';
-import manifest from '../../public/assets/manifest.json';
+import assets from '../../public/assets/assets.json';
 
-const assetManifest: Record<string, string> = manifest;
+const assetManifest: Record<string, string> = assets;
 
 // Return the hashed file name
 const getAssetUrl = (assetName: string) => {
   const hashedName = assetManifest[assetName];
   if (!hashedName) {
-    throw new Error(`Asset not found in manifest: ${assetName}`);
+    throw new Error(`Asset not found in asset manifest: ${assetName}`);
   }
   return `assets/${hashedName}`;
 };

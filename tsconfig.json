@@ -7,7 +7,7 @@
     "strict": true,
 
     /* Modules */
-    "module": "esnext",
+    "module": "preserve",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "types": ["./worker-configuration.d.ts"],
@@ -31,7 +31,7 @@
     /* Language and Environment */
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "lib": ["esnext"],
+    "lib": ["ESNext"],
     "target": "esnext",
 
     /* Compiler Diagnostics */

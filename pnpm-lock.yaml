@@ -8,7 +8,10 @@ importers:
 
   .:
     dependencies:
-      alpinejs:
+      '@alpinejs/csp':
+        specifier: ^3.15.2
+        version: 3.15.2
+      '@alpinejs/persist':
         specifier: ^3.15.2
         version: 3.15.2
       hono:
@@ -29,6 +32,12 @@ importers:
         version: 4.50.0
 
 packages:
+
+  '@alpinejs/csp@3.15.2':
+    resolution: {integrity: sha512-RkixWMrtlC6GpIsjqJdmrEkmF0ssYO1PV7cH3dwkpMLZb9cElqiFKUrrHGVK0+3d3wJ9kV+jHQiGtWVFx9EXlQ==}
+
+  '@alpinejs/persist@3.15.2':
+    resolution: {integrity: sha512-g+2Nj42EWmSlJIWi6KANAzHjsxWIGQ/ye7kSvpEWMyRZQJLX/B6WUEofHXCYkvkWamA00o4JwnybVOrNJpDaeQ==}
 
   '@biomejs/biome@2.3.5':
     resolution: {integrity: sha512-HvLhNlIlBIbAV77VysRIBEwp55oM/QAjQEin74QQX9Xb259/XP/D5AGGnZMOyF1el4zcvlNYYR3AyTMUV3ILhg==}
@@ -429,9 +438,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  alpinejs@3.15.2:
-    resolution: {integrity: sha512-2kYF2aG+DTFkE6p0rHG5XmN4VEb6sO9b02aOdU4+i8QN6rL0DbRZQiypDE1gBcGO65yDcqMz5KKYUYgMUxgNkw==}
-
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
 
@@ -576,6 +582,12 @@ packages:
     resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
 snapshots:
+
+  '@alpinejs/csp@3.15.2':
+    dependencies:
+      '@vue/reactivity': 3.1.5
+
+  '@alpinejs/persist@3.15.2': {}
 
   '@biomejs/biome@2.3.5':
     optionalDependencies:
@@ -830,10 +842,6 @@ snapshots:
   acorn-walk@8.3.2: {}
 
   acorn@8.14.0: {}
-
-  alpinejs@3.15.2:
-    dependencies:
-      '@vue/reactivity': 3.1.5
 
   blake3-wasm@2.1.5: {}
 

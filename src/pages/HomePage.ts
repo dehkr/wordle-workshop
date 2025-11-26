@@ -3,8 +3,13 @@ import { BaseLayout } from '../layouts/BaseLayout';
 import { nl } from '../utils/formatting';
 
 export function HomePage() {
-  const pageContent = html`<main x-data="game" @keyup.window="onKeyPress($event.key)">
+  const pageContent = html`<main
+    x-data="game(4)"
+    @keyup.window="onKeyPress($event.key)"
+  >
     <h1 class="logo" aria-label="TryCat">
+      <div><input type="text" name="secret" x-model="secret"></div>
+      <p x-text="secret"></p>
       <img src="images/trycat-logo.svg" alt="TryCat logo">
       <output class="result" x-text="message"></output>
     </h1>
@@ -33,7 +38,7 @@ export function HomePage() {
             <button
               type="button"
               class="key"
-              x-bind:class="matchingTileForKey(key)?.status"
+              x-bind:class="keyStatus(key)"
               x-text="key"
             ></button>
           </template>
