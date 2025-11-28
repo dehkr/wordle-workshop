@@ -4,24 +4,22 @@ import { nl } from '../utils/formatting';
 
 export function HomePage() {
   const pageContent = html`<main
+    class="main"
     x-data="game(4)"
-    @keyup.window="onKeyPress($event.key)"
+    x-on:keyup.window="onKeyPress($event.key)"
   >
     <h1 class="logo" aria-label="TryCat">
-      <div><input type="text" name="secret" x-model="secret"></div>
-      <p x-text="secret"></p>
-      <img src="images/trycat-logo.svg" alt="TryCat logo">
-      <output class="result" x-text="message"></output>
+      <img src="images/trycat-logotype.svg" alt="TryCat">
     </h1>
+    <div class="output">
+      <p class="message" x-text="message"></p>
+      <template x-if="gameOver">
+        <button type="button" class="new-game" x-on:click="newGame">New game</button>
+      </template>
+    </div>
     <div id="game">
       <template x-for="(row, index) in board">
-        <div
-          class="row"
-          x-bind:class="{
-            'current': currentRowIndex === index,
-            'invalid': currentRowIndex === index && errors,
-          }"
-        >
+        <div class="row" x-bind:class="rowStatus(index)">
           <template x-for="tile in row">
             <div class="tile" x-bind:class="tile.status" x-text="tile.letter"></div>
           </template>

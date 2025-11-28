@@ -5,3 +5,4 @@ public/assets/
 .env.production
 .DS_Store
 .assetsignore
+state/

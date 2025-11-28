@@ -1,4 +1,4 @@
-import Alpine from '@alpinejs/csp';
+// import Alpine from '@alpinejs/csp';
 import { Tile } from './Tile';
 import { allWords, theWords } from './words';
 
@@ -6,22 +6,28 @@ export function game(num) {
   let guessesAllowed = 3;
 
   if (num !== undefined) {
-    if (typeof num === 'number' && (num >= 3 && num <= 10)) {
+    if (typeof num === 'number' && num >= 3 && num <= 10) {
       guessesAllowed = num;
     } else {
-      console.warn(`Invalid argument passed to game: ${num}. Must be a number between 3–10.`);
+      console.warn(
+        `Invalid argument passed to game: ${num}. Must be a number between 3–10.`,
+      );
     }
   }
 
   return {
     guessesAllowed: guessesAllowed,
-    theWord: theWords[Math.floor(Math.random() * theWords.length)],
+    theWord: '',
     board: [],
     currentRowIndex: 0,
-    state: 'active',
+    state: 'IN_PROGRESS', // IN_PROGRESS, WIN, LOSE
     errors: false,
     message: '',
-    secret: Alpine.$persist(''),
+    // gameState: Alpine.$persist({
+    //   guesses: [],
+    //   currentRowIndex: 0,
+    //   status: 'IN_PROGRESS', 
+    // }),
 
     letters: [
       'QWERTYUIOP'.split(''),
@@ -41,10 +47,30 @@ export function game(num) {
       return this.guessesAllowed - this.currentRowIndex - 1;
     },
 
+    get gameOver() {
+      return this.state !== 'IN_PROGRESS';
+    },
+
     init() {
+      this.newGame();
+    },
+
+    newGame() {
+      this.state = 'IN_PROGRESS';
+      this.message = '';
+      this.theWord = this.selectRandomWord();
+      this.generateBoard();
+      this.currentRowIndex = 0;
+    },
+
+    generateBoard() {
       this.board = Array.from({ length: this.guessesAllowed }, () => {
         return Array.from({ length: this.theWord.length }, (_, index) => new Tile(index));
       });
+    },
+
+    selectRandomWord() {
+      return theWords[Math.floor(Math.random() * theWords.length)];
     },
 
     matchingTileForKey(key) {
@@ -59,16 +85,26 @@ export function game(num) {
       return this.matchingTileForKey(key) ? this.matchingTileForKey(key).status : null;
     },
 
-    onKeyPress(key) {
-      this.message = '';
-      this.errors = false;
+    rowStatus(index) {
+      return {
+        current: this.currentRowIndex === index,
+        invalid: this.currentRowIndex === index && this.errors,
+      };
+    },
 
-      if (/^[A-z]$/.test(key)) {
-        this.fillTile(key);
-      } else if (key === 'Backspace') {
-        this.emptyTile();
-      } else if (key === 'Enter') {
-        this.submitGuess();
+    onKeyPress(key) {
+      if (this.state === 'IN_PROGRESS') {
+        if (/^[A-z]$/.test(key)) {
+          this.fillTile(key);
+        } else if (key === 'Backspace') {
+          if (this.errors) {
+            this.message = '';
+            this.errors = false;
+          }
+          this.emptyTile();
+        } else if (key === 'Enter') {
+          this.submitGuess();
+        }
       }
     },
 
@@ -91,6 +127,7 @@ export function game(num) {
     },
 
     submitGuess() {
+      // first check if row is full of letters
       if (this.currentGuess.length < this.theWord.length) {
         return;
       }
@@ -104,15 +141,26 @@ export function game(num) {
       Tile.updateStatusesForRow(this.currentRow, this.theWord);
 
       if (this.currentGuess === this.theWord) {
-        this.state = 'complete';
-        this.message = 'You win!';
+        this.doWin();
       } else if (this.remainingGuesses <= 0) {
-        this.state = 'complete';
-        this.message = `Game over. The word was: ${this.theWord.toUpperCase()}`;
+        this.doLose();
       } else {
-        this.currentRowIndex++;
-        this.message = 'Incorrect';
+        this.doNextGuess();
       }
+    },
+
+    doNextGuess() {
+      this.currentRowIndex++;
+    },
+
+    doWin() {
+      this.state = 'WIN';
+      this.message = 'You win!';
+    },
+
+    doLose() {
+      this.state = 'LOSE';
+      this.message = `Sorry, the word is "${this.theWord.toUpperCase()}"`;
     },
   };
 }
