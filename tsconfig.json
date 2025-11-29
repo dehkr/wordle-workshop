@@ -31,7 +31,7 @@
     /* Language and Environment */
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "target": "esnext",
 
     /* Compiler Diagnostics */

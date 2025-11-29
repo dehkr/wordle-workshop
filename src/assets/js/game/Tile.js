@@ -6,6 +6,11 @@ export class Tile {
     this.position = position;
   }
 
+  /**
+   * Updates the letter and status of a row
+   * @param {Number} row - The row index to evaluate
+   * @param {String} theWord - The word to check against
+   */ 
   static updateStatusesForRow(row, theWord) {
     theWord = theWord.split('');
 

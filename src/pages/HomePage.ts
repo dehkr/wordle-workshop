@@ -13,7 +13,7 @@ export function HomePage() {
     </h1>
     <div class="output">
       <p class="message" x-text="message"></p>
-      <template x-if="gameOver">
+      <template x-if="canPlayAgain">
         <button type="button" class="new-game" x-on:click="newGame">New game</button>
       </template>
     </div>
